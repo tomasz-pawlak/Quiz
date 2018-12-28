@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:padding="16dp"
+        tools:context=".QuizActivity">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/text_aktualnepunkty"
+              android:text="Punkty:0"
+              android:fontFamily="monospace"
+              android:layout_centerHorizontal="true"
+              android:textColor="@android:color/holo_orange_dark"
+              android:textSize="20dp"
+              android:padding="10dp"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/text_aktualnepytanie"
+              android:text="Pytanie:1/x"
+              android:fontFamily="monospace"
+              android:layout_below="@id/text_aktualnepunkty"
+              android:layout_centerHorizontal="true"
+              android:textSize="20dp"
+              android:textColor="@android:color/holo_orange_dark"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/text_timer"
+              android:text="00:30"
+              android:padding="5dp"
+              android:textSize="50dp"
+              android:fontFamily="monospace"
+              android:layout_centerHorizontal="true"
+              android:layout_below="@id/text_aktualnepytanie"
+              android:textColor="@android:color/white"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="122dp"
+              android:id="@+id/text_question"
+              android:text="To jest przykładowe pytanie\nTo jest przykładowe pytanie\nTo jest przykładowe pytanie"
+              android:textSize="18dp"
+              android:layout_above="@id/radio_grp"
+              android:paddingBottom="18dp"
+              android:textAlignment="center"
+              android:textColor="@android:color/holo_orange_dark"
+              android:lineSpacingExtra="5dp"
+              android:fontFamily="monospace"
+              android:layout_centerHorizontal="true"
+    />
+
+    <RadioGroup android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/radio_grp"
+                android:layout_alignParentBottom="true" android:layout_marginBottom="127dp"
+                android:layout_toStartOf="@+id/text_timer">
+
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/radio_button1"
+                     android:text="Opcja 1"/>
+
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/radio_button2"
+                     android:text="Opcja 2"/>
+
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/radio_button3"
+                     android:text="Opcja 3"/>
+    </RadioGroup>
+
+    <Button android:layout_width="140dp" android:layout_height="wrap_content"
+            android:id="@+id/button_potwierdz"
+            android:text="Potwierdź"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="50dp"/>
+
+
+</RelativeLayout>
