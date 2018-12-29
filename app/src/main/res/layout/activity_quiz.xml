@@ -53,19 +53,26 @@
     <RadioGroup android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:id="@+id/radio_grp"
                 android:layout_alignParentBottom="true" android:layout_marginBottom="127dp"
-                android:layout_toStartOf="@+id/text_timer">
+                android:layout_toStartOf="@+id/text_timer"
+    >
 
         <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
                      android:id="@+id/radio_button1"
-                     android:text="Opcja 1"/>
+                     android:text="Opcja 1"
+        android:buttonTint="@android:color/white"
+        android:textColor="@android:color/white"/>
 
         <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
                      android:id="@+id/radio_button2"
-                     android:text="Opcja 2"/>
+                     android:text="Opcja 2"
+                     android:buttonTint="@android:color/white"
+                     android:textColor="@android:color/white"/>
 
         <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
                      android:id="@+id/radio_button3"
-                     android:text="Opcja 3"/>
+                     android:text="Opcja 3"
+                     android:buttonTint="@android:color/white"
+                     android:textColor="@android:color/white"/>
     </RadioGroup>
 
     <Button android:layout_width="140dp" android:layout_height="wrap_content"
