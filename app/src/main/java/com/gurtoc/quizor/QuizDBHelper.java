@@ -2,9 +2,13 @@ package com.gurtoc.quizor;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.gurtoc.quizor.QuizContract.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MojaBazaPytan.db";
@@ -22,7 +26,7 @@ public class QuizDBHelper extends SQLiteOpenHelper {
 
         final String SQL_CREATE_QUESTION_TABLE = "CREATE TABLE " +
                 QuestionTabele.TABLE_NAME + " (" +
-                QuestionTabele._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+                QuestionTabele._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 QuestionTabele.COLUMN_QUESTION + " TEXT, " +
                 QuestionTabele.COLUMN_OPCJA1 + " TEXT, " +
                 QuestionTabele.COLUMN_OPCJA2 + " TEXT, " +
@@ -30,8 +34,11 @@ public class QuizDBHelper extends SQLiteOpenHelper {
                 QuestionTabele.COLUMN_ODPOWIEDZ + " INTEGER " + " )";
 
         db.execSQL(SQL_CREATE_QUESTION_TABLE);
+
         fillQuestionTable();
     }
+
+
 
     private void fillQuestionTable() {
         Question q1 = new Question("Najwiekszy szczyt Polski to:", "Rysy","Sniezka","Lysa Gora",1);
@@ -58,8 +65,30 @@ public class QuizDBHelper extends SQLiteOpenHelper {
 
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+ QuestionTabele.TABLE_NAME);
         onCreate(db);
+    }
+
+    public List<Question> getAllQuestions(){
+        List<Question> questionList = new ArrayList<>();
+
+        db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + QuestionTabele.TABLE_NAME,  null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Question question = new Question();
+                question.setPytanie(cursor.getString(cursor.getColumnIndex(QuestionTabele.COLUMN_QUESTION)));
+                question.setOpcja1(cursor.getString(cursor.getColumnIndex(QuestionTabele.COLUMN_OPCJA1)));
+                question.setOpcja2(cursor.getString(cursor.getColumnIndex(QuestionTabele.COLUMN_OPCJA2)));
+                question.setOpcja3(cursor.getString(cursor.getColumnIndex(QuestionTabele.COLUMN_OPCJA3)));
+                question.setOdpowiedz(cursor.getInt(cursor.getColumnIndex(QuestionTabele.COLUMN_ODPOWIEDZ)));
+                questionList.add(question);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return questionList;
     }
 }
