@@ -45,7 +45,7 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         addQuestion(q1);
         Question q2 = new Question("Elon Musk jest właścicielem marki:", "Volvo","Tesla","Skoda",2);
         addQuestion(q2);
-        Question q3 = new Question("Jedyne zwycięskie polskie powstanie to: ", "Sląskie","Warszawskie","Wielkopolskie",2);
+        Question q3 = new Question("Jedyne zwycięskie polskie powstanie to: ", "Sląskie","Warszawskie","Wielkopolskie",3);
         addQuestion(q3);
         Question q4 = new Question("Który produkt Kinder jest zakazany w USA?", "Jajko-niespodzianka","Bueno","Nutella",1);
         addQuestion(q4);

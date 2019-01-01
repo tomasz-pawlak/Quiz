@@ -40,9 +40,9 @@
     <TextView android:layout_width="match_parent" android:layout_height="122dp"
               android:id="@+id/text_question"
               android:text="To jest przykładowe pytanie\nTo jest przykładowe pytanie\nTo jest przykładowe pytanie"
-              android:textSize="18dp"
+              android:textSize="25dp"
               android:layout_above="@id/radio_grp"
-              android:paddingBottom="18dp"
+              android:paddingBottom="10dp"
               android:textAlignment="center"
               android:textColor="@android:color/holo_orange_dark"
               android:lineSpacingExtra="5dp"
@@ -50,36 +50,50 @@
               android:layout_centerHorizontal="true"
     />
 
-    <RadioGroup android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <RadioGroup android:layout_width="329dp" android:layout_height="wrap_content"
                 android:id="@+id/radio_grp"
-                android:layout_alignParentBottom="true" android:layout_marginBottom="127dp"
-                android:layout_toStartOf="@+id/text_timer"
-    >
+                android:layout_alignParentBottom="true" android:layout_marginBottom="80dp"
 
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+        <RadioButton android:layout_width="match_parent" android:layout_height="wrap_content"
                      android:id="@+id/radio_button1"
                      android:text="Opcja 1"
-        android:buttonTint="@android:color/white"
-        android:textColor="@android:color/white"/>
+                     android:textSize="20dp"
+                     android:textColor="@android:color/white"
+                     android:fontFamily="monospace"
+                     android:padding="3dp"/>
+        <!--android:buttonTint="@android:color/white"-->
+        <!--android:textColor="@android:color/white"-->
 
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+        <RadioButton android:layout_width="match_parent" android:layout_height="wrap_content"
                      android:id="@+id/radio_button2"
                      android:text="Opcja 2"
-                     android:buttonTint="@android:color/white"
-                     android:textColor="@android:color/white"/>
 
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:textSize="20dp"
+                     android:fontFamily="monospace"
+                     android:padding="3dp"/>
+        <!--android:buttonTint="@android:color/white"-->
+        <!--android:textColor="@android:color/white"-->
+
+
+        <RadioButton android:layout_width="match_parent" android:layout_height="wrap_content"
                      android:id="@+id/radio_button3"
                      android:text="Opcja 3"
-                     android:buttonTint="@android:color/white"
-                     android:textColor="@android:color/white"/>
+                     android:textSize="20dp"
+                     android:fontFamily="monospace"
+                     android:padding="3dp"/>
+        <!--android:buttonTint="@android:color/white"-->
+        <!--android:textColor="@android:color/white"-->
+
     </RadioGroup>
 
     <Button android:layout_width="140dp" android:layout_height="wrap_content"
             android:id="@+id/button_potwierdz"
             android:text="Potwierdź"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true" android:layout_marginBottom="50dp"/>
+            android:layout_alignParentBottom="true"/>
 
 
 </RelativeLayout>
