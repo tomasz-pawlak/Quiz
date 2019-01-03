@@ -12,7 +12,7 @@ import java.util.List;
 
 public class QuizDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MojaBazaPytan.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
 
     private SQLiteDatabase db;
 
@@ -31,11 +31,12 @@ public class QuizDBHelper extends SQLiteOpenHelper {
                 QuestionTabele.COLUMN_OPCJA1 + " TEXT, " +
                 QuestionTabele.COLUMN_OPCJA2 + " TEXT, " +
                 QuestionTabele.COLUMN_OPCJA3 + " TEXT, " +
-                QuestionTabele.COLUMN_ODPOWIEDZ + " INTEGER " + " )";
+                QuestionTabele.COLUMN_ODPOWIEDZ + " INTEGER " + ")";
 
         db.execSQL(SQL_CREATE_QUESTION_TABLE);
 
         fillQuestionTable();
+
     }
 
 
@@ -51,6 +52,14 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         addQuestion(q4);
         Question q5 = new Question("Jak nazywał się najsłynniejszy polski karateka?", "Bruce Lee","Chuck Norris","Franek Kimono",3);
         addQuestion(q5);
+        Question q6 = new Question("Jaka powieść otrzymała nagrodę Booker w 2017r.?", "Lincoln in the Bardo","Sprzedawczyk ","Krótka historia siedmiu zabójstw",1);
+        addQuestion(q6);
+        Question q7 = new Question("Najdalej wysunięte miasto na północ to:", "Londyn","Warszawa ","Oslo",3);
+        addQuestion(q7);
+        Question q8 = new Question("W którym roku rozpoczeła się II Wojna Swiatowa", "1918","1939 ","1987",2);
+        addQuestion(q8);
+        Question q9 = new Question("Główna postać sagi Wiedzmin miała na imię:", "Geralt","Zoltan ","Jaskier",1);
+        addQuestion(q9);
     }
 
     private void addQuestion(Question question){
@@ -69,6 +78,8 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+ QuestionTabele.TABLE_NAME);
         onCreate(db);
     }
+
+
 
     public List<Question> getAllQuestions(){
         List<Question> questionList = new ArrayList<>();

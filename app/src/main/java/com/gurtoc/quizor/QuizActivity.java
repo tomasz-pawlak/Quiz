@@ -1,5 +1,6 @@
 package com.gurtoc.quizor;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,6 +25,9 @@ public class QuizActivity extends AppCompatActivity {
     private RadioButton radioButton2;
     private RadioButton radioButton3;
     private Button buttonPotwierdz;
+
+    public static final String DODATKOWE_PUNKTY = "dodatkowePunkty";
+
 
     private ColorStateList textColorDefRb;
 
@@ -81,7 +85,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
     private void showNextQuestion() {
-       radioButton1.setTextColor(textColorDefRb);
+        radioButton1.setTextColor(textColorDefRb);
         radioButton2.setTextColor(textColorDefRb);
         radioButton3.setTextColor(textColorDefRb);
         radioGrp.clearCheck();
@@ -104,6 +108,9 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void finishQuiz() {
+        Intent intent = new Intent();
+        intent.putExtra(DODATKOWE_PUNKTY , wynik);
+        setResult(RESULT_OK, intent);
         finish();
     }
 
