@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 
 public class QuizActivity extends AppCompatActivity {
@@ -27,9 +29,14 @@ public class QuizActivity extends AppCompatActivity {
     private Button buttonPotwierdz;
 
     public static final String DODATKOWE_PUNKTY = "dodatkowePunkty";
+    private static final long TIMER = 15000;
 
 
     private ColorStateList textColorDefRb;
+    private ColorStateList textColorDefTimer;
+
+    private CountDownTimer countDownTimer;
+    private long pozostalyCzas;
 
     private int pytanieLicznik;
     private int pytanieOgolne;
@@ -55,8 +62,10 @@ public class QuizActivity extends AppCompatActivity {
         radioButton2 = findViewById(R.id.radio_button2);
         radioButton3 = findViewById(R.id.radio_button3);
         buttonPotwierdz = findViewById(R.id.button_potwierdz);
+        //textTimer = findViewById(R.id.text_timer);
 
         textColorDefRb = radioButton1.getTextColors();
+        textColorDefTimer = textTimer.getTextColors();
 
         QuizDBHelper quizDBHelper = new QuizDBHelper(this);
 
@@ -102,8 +111,43 @@ public class QuizActivity extends AppCompatActivity {
             textAktualnepytanie.setText("Pytanie: " + pytanieLicznik + "/" + pytanieOgolne);
             odpowiedz = false;
             buttonPotwierdz.setText("Potwierdz");
+
+            pozostalyCzas = TIMER;
+            startTimer();
         } else {
             finishQuiz();
+        }
+    }
+
+    private void startTimer() {
+        countDownTimer = new CountDownTimer(pozostalyCzas, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                pozostalyCzas = millisUntilFinished;
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+                pozostalyCzas = 0;
+                updateTimer();
+                checkAnswer();
+            }
+        }.start();
+    }
+
+    private void updateTimer(){
+        int minutes = (int) (pozostalyCzas / 1000) / 60;
+        int seconds = (int) (pozostalyCzas / 1000) % 60;
+
+        String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+        textTimer.setText(timeFormatted);
+
+        if (pozostalyCzas < 10000) {
+            textTimer.setTextColor(Color.RED);
+        } else {
+            textTimer.setTextColor(textColorDefTimer);
         }
     }
 
@@ -114,8 +158,18 @@ public class QuizActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
+
     private void checkAnswer() {
         odpowiedz = true;
+
+        countDownTimer.cancel();
 
         RadioButton rbSelected = findViewById(radioGrp.getCheckedRadioButtonId());
         int answerNr = radioGrp.indexOfChild(rbSelected) + 1;
